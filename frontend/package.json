@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon -w src -e js,jsx,json --exec \"next dev\"",
+    "dev": "next dev", //"nodemon -w src -e js,jsx,json --exec \"next dev\"",
     "build": "next build",
     "start": "CHOKIDAR_USEPOLLING=true next start",
     "lint": "CHOKIDAR_USEPOLLING=true next lint"
