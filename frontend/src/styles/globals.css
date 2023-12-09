@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --max-width: 100vw;
+    --border-radius: 10px;
+    --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+        'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+        'Fira Mono', 'Droid Sans Mono', 'Courier New', 'badComic', monospace;
+
+    /*
+    Black = #001219
+    DarkBlue = #005F73
+    Blue = #0A9396
+    LightBlue = #94D2BD
+    LightYellow = #E9D8A6
+    Orange = #EE9B00
+    DarkOrange = #CA6702
+    LightRed = #BB3E03
+    Red = #9B2226
+    */
+
+    --secondary-color: #FF4B91;
+    --primary-color: #0802A3;
+    --text-color: #caf0f8;
+    --accent-color: #FFCD4B;
+    --foreground-color: #FF7676;
+    --bg-color: white;
+    --bg-color-transparent: #390ca349;
+    --transparent: rgba(0, 0, 0, 0);
+
+    
+    --scrollbar-color: rgba(0, 0, 0, 0);
+    --scrollbar-color-thumb: var(--secondary-color);
+}
+
+[data-theme="light"] {
+    --secondary-color: #FF4B91;
+    --primary-color: #0802A3;
+    --text-color: #caf0f8;
+    --accent-color: #FFCD4B;
+    --foreground-color: #FF7676;
+    --bg-color: white;
+    --bg-color-transparent: #390ca349;
+    --transparent: rgba(0, 0, 0, 0);
+
+}
+
+.ͼ16 .ͼ3 .cm-activeLine .errorStyle{
+    background-color: var(--foreground-color) !important;
+}
+
+.errorStyle {
+    background-color: var(--accent-color) !important;
+}
+
+.errorStyle:hover{
+    background-color: var(--foreground-color) !important;
+}
+
+.errorStyle:focus{
+    background-color: var(--foreground-color) !important;
+}
+
+*::-webkit-scrollbar {
+    overflow: hidden;
+    width: 0.3em;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-color);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color-thumb);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-color);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;/* 
+    border-radius: 10px; */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.ͼ16{
+    border-radius: 10px;
+}
+
+.cm-gutters{
+    border-radius: 10px;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: dark;
+    }
+}
+
+body {
+    color: rgb(var(--secondary-color));
+    background: var(--bg-color);
+}
+
+
+.colorInput {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    --nColor: var(--accent-color);
+}
+
+.colorInput::-webkit-color-swatch {
+    border-radius: 10px;
+    border: 2px solid var(--nColor);
+}
+
+.colorInput::-moz-color-swatch {
+    border-radius: 10px;
+    border: 2px solid var(--nColor);
+}
+
+
+select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    cursor: inherit;
+
+    outline: none;
+
+    
+}
+
+/* 
+.mod-scroll {
+    overflow: hidden;
+    --scrollbar-color: rgba(0, 0, 0, 0);
+    --scrollbar-color-thumb: var(--secondary-color);
+    overflow-y: scroll;
+}
+
+.mod-scroll:hover {
+    --scrollbar-color: rgba(3, 0, 28, 0.123);
+    --scrollbar-color-thumb: var(--accent-color);
+}
+
+
+.mod-scroll::-webkit-scrollbar {
+    width: 0.3em;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.mod-scroll::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-color);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.mod-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color-thumb);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.mod-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-color);
+} */
