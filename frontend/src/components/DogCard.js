@@ -6,20 +6,28 @@ import { AiFillEye, AiFillEyeInvisible, AiOutlineHeart, AiOutlineFrown } from "r
 const DogCard = ({ dog, isLoading, width, openID, setShowDescription, regret, children }) => {
 
     const [Loading, setIsLoading] = useState(isLoading)
-/* 
+    const [imgURL, setImgURL] = useState(`${dog.url}?${new Date().getTime()}`)
+    const [reloadTries, setReloadTries] = useState(0)
+
     useEffect(() => {
-        setIsLoading(true);
+        setImgURL(`${dog.url}?${new Date().getTime()}`)
     }, [dog.url])
- */
+
 
     useEffect(() => {
         if (isLoading) {
             setIsLoading(true);
         }
-    }, [isLoading])
+    }, [isLoading, dog.url])
+
+
+
+    function reloadImage() {
+        // Schedule the next refresh after 5 seconds (5000 milliseconds)
+        setTimeout(() => { setImgURL(`${dog.url}?${new Date().getTime()}`); setReloadTries((prev) => prev + 1) }, 1000);
+    }
 
     const toggleDescription = () => {
-
         setShowDescription(dog.id == openID ? -1 : dog.id);
     };
 
@@ -28,7 +36,7 @@ const DogCard = ({ dog, isLoading, width, openID, setShowDescription, regret, ch
             <div className="relative">
                 <div style={{ paddingBottom: '100%', overflow: 'hidden' }} className="rounded-lg" >
                     {Loading && <LoadingDiv />}
-                    <img src={dog.url} alt={dog.name} onError={() => setIsLoading(false)} className="absolute h-full w-full object-cover"
+                    <img src={imgURL} alt={dog.name} onError={() => (reloadTries < 5) && reloadImage()} className="absolute h-full w-full object-cover"
                         onLoad={() => setIsLoading(false)} style={{ display: (Loading || isLoading) ? 'none' : 'block' }} />
 
                 </div>

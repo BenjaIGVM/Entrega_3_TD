@@ -1,8 +1,7 @@
 
 
 export default async function handler(req, res) {
-    const { route } = req.query
-
+    const { route, params } = req.query
     try {
         let info
         if (req.method != 'GET') {
@@ -21,10 +20,17 @@ export default async function handler(req, res) {
                 }
             }
         }
-        const response = await fetch('http://localhost:8000/api/perro/' + route.join('/'), info)
+        const response = await fetch('http://localhost:8000/api/perro/' + route.join('/') + (params ? params : ""), info)
 
         const data = await response.json();
-        res.status(response.status).json(data);
+        if(response.status == 200){
+            res.status(response.status).json(data);
+
+        }else{
+            res.status(response.status).json({error:data});
+
+        }
+
 
     } catch (error) {
         // Handle network errors or other issues
