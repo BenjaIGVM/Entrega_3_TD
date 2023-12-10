@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Spatie\FlareClient\Http\Response as HttpResponse;
 use App\Http\Requests\perroRequest;
+use App\Models\Interaccion;
 use App\Services\perroService;
 
 use Exception;
@@ -28,6 +29,7 @@ class PerroController extends Controller
                 'message' => 'Perro creado correctamente',
                 'data' => $perro
             ], Response::HTTP_OK);
+
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return response()->json(['message' => 'Error al crear el perro'], Response::HTTP_BAD_REQUEST);
@@ -83,6 +85,7 @@ class PerroController extends Controller
             return response()->json(['message' => 'Error al obtener el perro aleatorio'], Response::HTTP_BAD_REQUEST);
         }
     }
+
     public function getRandomCandidato(Request $request, PerroService $perroService)
     {
         try {
@@ -91,19 +94,22 @@ class PerroController extends Controller
             if (!$perro_interesado) {
                 return response()->json(['message' => 'Perro interesado no encontrado'], Response::HTTP_NOT_FOUND);
             }
+            
+            $interactedPerroIds = Interaccion::where('perro_interesado_id', $request->id)->get()->pluck('perro_candidato_id')->toArray(); 
+            $perros_candidatos = Perro::whereNotIn('id', array_merge([$request->id], $interactedPerroIds));
 
-            $perro_candidato = Perro::where('id', '!=', $request->id)->inRandomOrder()->first();
-
-            if (!$perro_candidato) {
+            if (!$perros_candidatos) {
                 return response()->json(['message' => 'No se encontraron candidatos en la base de datos'], Response::HTTP_NOT_FOUND);
             }
 
+            $perro_candidato = $perros_candidatos->inRandomOrder()->first();
+            
             return response()->json([
                 'message' => 'Candidato aleatorio encontrado',
-                'data' => [
+                'data' => $perro_candidato/* [
                     'id' => $perro_candidato->id,
                     'name' => $perro_candidato->name,
-                ]
+                ] */
             ], Response::HTTP_OK);
         } catch (Exception $e) {
             Log::error($e->getMessage());
