@@ -50,7 +50,7 @@ class InteraccionController extends Controller
             return response()->json(["error" => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
-    public function getAllInteracciones(Request $request)
+    public function getAllInteracciones()
     {
         try {
             $interacciones = Interaccion::all();
@@ -132,12 +132,15 @@ class InteraccionController extends Controller
             $perro_interesado_id = $request->perro_interesado_id;
 
             $perrosAceptados = Interaccion::where('perro_interesado_id', $perro_interesado_id)
-                ->where('preferencia', 'aceptado')
-                ->get();
+                ->where('preferencia', 'aceptado')->pluck('perro_candidato_id')->toArray(); 
+            
+            
+            $perro_candidatos_aceptados = Perro::whereIn('id', $perrosAceptados)->get();
+            
 
             return response()->json([
                 'message' => 'Perros aceptados obtenidos correctamente',
-                'data' => $perrosAceptados
+                'data' => $perro_candidatos_aceptados
             ], Response::HTTP_OK);
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -151,12 +154,14 @@ class InteraccionController extends Controller
             $perro_interesado_id = $request->perro_interesado_id;
 
             $perrosRechazados = Interaccion::where('perro_interesado_id', $perro_interesado_id)
-                ->where('preferencia', 'rechazado')
-                ->get();
+                ->where('preferencia', 'rechazado')->pluck('perro_candidato_id')->toArray(); 
+            
+            
+            $perro_candidatos_rechazados = Perro::whereIn('id', $perrosRechazados)->get();
 
             return response()->json([
                 'message' => 'Perros rechazados obtenidos correctamente',
-                'data' => $perrosRechazados
+                'data' => $perro_candidatos_rechazados
             ], Response::HTTP_OK);
         } catch (Exception $e) {
             Log::error($e->getMessage());
