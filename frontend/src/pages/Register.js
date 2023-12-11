@@ -117,9 +117,9 @@ export default Register;
 
 
 
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import { perroCall } from '../utils/calls';
-
+// import RandomCard from '@/components/RandomCard';
 // const Register = () => {
 //     const [dogData, setDogData] = useState(null);
 //     const [dogName, setDogName] = useState('');
@@ -192,7 +192,7 @@ import React, { useState, useEffect } from 'react';
 //                 <h2 className="text-xl font-semibold mb-4 self-center text-center">Registre su perro</h2>
 //                 {dogData && (
 //                     <div className="flex flex-col items-center">
-//                         <img src={dogData.message} alt="Perro Aleatorio" className="mb-4 rounded-lg" />
+//                        <RandomCard imageUrl={dogData.message}  />
 //                         <button onClick={handleFetchAnotherDog} className="bg-blue-500 text-white px-4 py-2 rounded-full mb-2">
 //                             Cambiar Imagen
 //                         </button>
@@ -227,4 +227,3 @@ import React, { useState, useEffect } from 'react';
 // };
 
 // export default Register;
-
