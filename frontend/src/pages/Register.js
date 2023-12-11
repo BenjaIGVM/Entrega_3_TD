@@ -31,16 +31,12 @@ const Register = () => {
                 setErrors({});
             } else {
                 console.error('Error al obtener perro aleatorio o imagen no válida');
-    
-                // Intenta obtener otra imagen aleatoria después de 1 segundo (1000 milisegundos)
                 setTimeout(() => {
                     fetchDog();
                 }, 1000);
             }
         } catch (error) {
             console.error('Error en la llamada a la API de perros:', error);
-    
-            // Intenta obtener otra imagen aleatoria después de 1 segundo (1000 milisegundos)
             setTimeout(() => {
                 fetchDog();
             }, 1000);
