@@ -117,8 +117,8 @@ export default Register;
 
 
 
-//import React, { useState, useEffect } from 'react';
-// import { perroCall } from '../utils/perroCalls';
+import React, { useState, useEffect } from 'react';
+// import { perroCall } from '../utils/calls';
 
 // const Register = () => {
 //     const [dogData, setDogData] = useState(null);
@@ -152,8 +152,13 @@ export default Register;
 //     const handleRegisterDog = async () => {
 //         try {
 //             setErrors({});
-//             if (!dogName || !dogDescription) {
-//                 console.error('Nombre y descripción son obligatorios.');
+//             if (!dogName || !/^[A-Za-z\s]+$/.test(dogName)) {
+//                 console.error('El nombre es obligatorio y debe ser un string alfabético.');
+//                 return;
+//             }
+            
+//             if (!dogDescription || !/^[A-Za-z\s.,]+$/.test(dogDescription)) {
+//                 console.error('La descripción es obligatoria y no debe contener números ni caracteres especiales.');
 //                 return;
 //             }
 //             console.log('imagen', dogData?.message);
@@ -182,9 +187,9 @@ export default Register;
 //         }
 //     };
 //     return (
-//         <div className="grid lg:grid-cols-3 grid-cols-1 text-black gap-4">
+//         <div className="text-black gap-4 h-screen flex items-center justify-center ">
 //             <div className="col-span-1 p-4 items-center h-min">
-//                 <h2 className="text-xl font-semibold mb-4 self-center text-center">Candidato</h2>
+//                 <h2 className="text-xl font-semibold mb-4 self-center text-center">Registre su perro</h2>
 //                 {dogData && (
 //                     <div className="flex flex-col items-center">
 //                         <img src={dogData.message} alt="Perro Aleatorio" className="mb-4 rounded-lg" />
@@ -222,3 +227,4 @@ export default Register;
 // };
 
 // export default Register;
+
