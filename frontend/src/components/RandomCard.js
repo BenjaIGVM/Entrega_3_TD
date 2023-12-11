@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { AiFillEye, AiFillEyeInvisible, AiOutlineHeart, AiOutlineFrown } from "react-icons/ai";
+
+
 const RandomCard = ({ imageUrl }) => {
     const [loading, setLoading] = useState(true);
     const [reloadTries, setReloadTries] = useState(0);
@@ -16,9 +17,9 @@ const RandomCard = ({ imageUrl }) => {
     }
 
     return (
-        <div className=" mx-auto rounded-lg  overflow-hidden bg-white text-black shadow-lg" >
-             
-            <div style={{ paddingBottom: '100%', overflow: 'hidden' }} className="rounded-lg">
+        <div className="mx-auto rounded-lg overflow-hidden bg-white text-black shadow-lg" style={{ width: '100%' }}>
+            <div className="relative">
+            <div style={{ paddingBottom: '100%', overflow: 'hidden' }} className="rounded-lg" >
                 {loading && <LoadingDiv />}
                 <img
                     src={`${imageUrl}?${new Date().getTime()}`}
@@ -29,7 +30,7 @@ const RandomCard = ({ imageUrl }) => {
                     style={{ display: loading ? 'none' : 'block' }}
                 />
             </div>
-            
+            </div>
         </div>
     );
 };
