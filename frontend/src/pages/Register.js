@@ -13,7 +13,6 @@ const Register = () => {
     useEffect(() => {
         fetchDog();
     }, []);
-    
     const isValidImageUrl = (url) => {
         return new Promise((resolve) => {
             const img = new Image();
@@ -21,28 +20,22 @@ const Register = () => {
             img.onerror = () => resolve(false);
             img.src = url;
         });
-    };
-    
+    }; 
     const fetchDog = async () => {
         try {
             const response = await fetch('https://dog.ceo/api/breeds/image/random');
-            const data = await response.json();
-    
+            const data = await response.json(); 
             if (response.ok && (await isValidImageUrl(data.message))) {
                 setDogData(data);
                 setErrors({});
             } else {
                 console.error('Error al obtener perro aleatorio o imagen no válida');
-    
-                // Intenta obtener otra imagen aleatoria después de 1 segundo (1000 milisegundos)
                 setTimeout(() => {
                     fetchDog();
                 }, 1000);
             }
         } catch (error) {
             console.error('Error en la llamada a la API de perros:', error);
-    
-            // Intenta obtener otra imagen aleatoria después de 1 segundo (1000 milisegundos)
             setTimeout(() => {
                 fetchDog();
             }, 1000);
@@ -59,7 +52,6 @@ const Register = () => {
                 setErrors({ name: 'El nombre es obligatorio y debe ser un string alfabético.' });
                 return;
             }
-
             if (!dogDescription || !/^[A-Za-z\s.,]+$/.test(dogDescription)) {
                 setErrors({
                     description: 'La descripción es obligatoria y no debe contener números ni caracteres especiales.',
@@ -86,8 +78,6 @@ const Register = () => {
                 setDogName('');
                 setDogDescription('');
                 fetchDog();
-
-                // Desaparecer el mensaje de éxito después de 3 segundos (3000 milisegundos)
                 setTimeout(() => {
                     setSuccessMessage('');
                 }, 3000);
