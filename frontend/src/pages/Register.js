@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { perroCall } from '../utils/calls';
+import { PerroCall } from '../utils/calls';
 import RandomCard from '@/components/RandomCard';
 const Register = () => {
     const [dogData, setDogData] = useState(null);
